@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ECO DIGITAL CONTACT</title>
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    :root {
+      --primary: #155eef;
+      --primary-soft: #e0edff;
+      --primary-dark: #0b3aa8;
+      --accent: #22c55e;
+      --bg-main: #020617;
+      --bg-card: rgba(15, 23, 42, 0.9);
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.3);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.7);
+      --shadow-glow: 0 0 35px rgba(37, 99, 235, 0.65);
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.22), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.24), transparent 55%),
+        radial-gradient(circle at 50% 100%, rgba(37, 99, 235, 0.16), transparent 60%),
+        radial-gradient(circle at 50% 0%, rgba(15, 23, 42, 0.8), rgba(2, 6, 23, 1) 60%);
+      background-color: var(--bg-main);
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(22px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.96),
+        rgba(15, 23, 42, 0.85),
+        transparent
+      );
+      border-bottom: 1px solid rgba(51, 65, 85, 0.7);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: radial-gradient(circle at 20% 0%, #38bdf8, #1d4ed8 55%, #020617 100%);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.75);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-logo::after {
+      content: "";
+      position: absolute;
+      inset: 18%;
+      border-radius: 999px;
+      border: 1px solid rgba(191, 219, 254, 0.9);
+      border-style: dashed;
+      opacity: 0.8;
+    }
+
+    .brand-text-main {
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #e5edff;
+    }
+
+    .brand-text-sub {
+      font-size: 0.7rem;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    nav li {
+      color: var(--text-soft);
+      cursor: pointer;
+      position: relative;
+      padding-bottom: 0.15rem;
+      transition: color 0.2s ease;
+    }
+
+    nav li::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(to right, var(--primary), #38bdf8);
+      transition: width 0.2s ease;
+      border-radius: 999px;
+    }
+
+    nav li:hover {
+      color: #e5e7eb;
+    }
+
+    nav li:hover::after {
+      width: 100%;
+    }
+
+    .user-area {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+
+    .btn-login {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.55), rgba(15, 23, 42, 0.96));
+      color: #e5edff;
+      padding: 0.35rem 0.95rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.8);
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 26px rgba(15, 23, 42, 0.95);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    }
+
+    /* MAIN LAYOUT */
+    main {
+      flex-grow: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .hero {
+      text-align: center;
+      max-width: 900px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: radial-gradient(circle at 0 0, rgba(37, 99, 235, 0.5), rgba(15, 23, 42, 0.9));
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #d1f4ff;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-kicker-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 3vw + 1rem, 3.1rem);
+      font-weight: 750;
+      line-height: 1.12;
+      color: #e5edff;
+      margin-bottom: 0.75rem;
+      text-shadow:
+        0 0 18px rgba(30, 64, 175, 0.7),
+        0 0 42px rgba(37, 99, 235, 0.7);
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+
+    /* SEARCH PANEL */
+    .search-panel {
+      width: 100%;
+      max-width: 760px;
+      background: radial-gradient(circle at 0 0, rgba(37, 99, 235, 0.45), rgba(15, 23, 42, 0.98));
+      border-radius: 24px;
+      padding: 1.1rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .search-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 999px;
+      padding: 0.25rem 0.4rem 0.25rem 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.55);
+    }
+
+    .search-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #38bdf8, #1d4ed8 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #eff6ff;
+      font-size: 0.9rem;
+      box-shadow: 0 0 16px rgba(59, 130, 246, 0.8);
+      flex-shrink: 0;
+    }
+
+    .search-input {
+      flex-grow: 1;
+      background: transparent;
+      border: none;
+      color: #e5e7eb;
+      font-size: 1rem;
+      padding: 0.45rem 0.1rem;
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: #6b7280;
+    }
+
+    .search-chip {
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #cbd5f5;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .search-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      color: #93c5fd;
+    }
+
+    .search-meta span {
+      opacity: 0.9;
+    }
+
+    .search-meta-shortcuts {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .kbd {
+      border-radius: 6px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 0.1rem 0.4rem;
+      font-size: 0.72rem;
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .spark {
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
+
+    /* ENTITIES GRID */
+    .entities-section {
+      width: 100%;
+      max-width: 950px;
+      margin-top: 1.2rem;
+    }
+
+    .entities-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
+
+    .entities-header strong {
+      color: #e5e7eb;
+      font-size: 0.88rem;
+    }
+
+    .entities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .entity-item {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 0.85rem 0.9rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.9);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.55rem;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .entity-item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0, rgba(37, 99, 235, 0.25), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.16s ease;
+    }
+
+    .entity-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .entity-icon-wrapper {
+      width: 50px;
+      height: 50px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 25% 0, #dbeafe, #1d4ed8 65%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px rgba(59, 130, 246, 0.95);
+      overflow: hidden;
+    }
+
+    .entity-icon-real {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 6px rgba(15, 23, 42, 0.85));
+    }
+
+    .entity-name {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #e5edff;
+    }
+
+    .entity-tag {
+      font-size: 0.72rem;
+      color: #9ca3af;
+      background: rgba(15, 23, 42, 0.86);
+      padding: 0.1rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    .entity-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-glow);
+      border-color: rgba(59, 130, 246, 0.9);
+      background: radial-gradient(circle at 0 0, rgba(37, 99, 235, 0.35), rgba(15, 23, 42, 0.98));
+    }
+
+    .entity-item:hover::before {
+      opacity: 1;
+    }
+
+    /* ACTION BUTTONS */
+    .actions {
+      margin-top: 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .action-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      padding: 0.7rem 1.8rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      letter-spacing: 0.02em;
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.9);
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .action-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #eff6ff;
+      border-color: transparent;
+    }
+
+    .action-secondary {
+      background: radial-gradient(circle at 0 0, rgba(37, 99, 235, 0.5), rgba(15, 23, 42, 0.98));
+      color: #e5edff;
+    }
+
+    .action-tertiary {
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-soft);
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
+    }
+
+    .action-primary:hover {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .action-secondary:hover {
+      border-color: rgba(129, 140, 248, 0.8);
+    }
+
+    .action-tertiary:hover {
+      border-color: rgba(148, 163, 184, 0.9);
+      color: #e5e7eb;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(30, 64, 175, 0.55);
+      background: radial-gradient(circle at 50% 0, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 1));
+      padding: 1rem 1.5rem 1.4rem;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+    }
+
+    .footer-links a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 768px) {
+      .header-inner {
+        padding-inline: 1rem;
+        gap: 0.75rem;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 1.95rem;
+      }
+
+      .search-panel {
+        padding: 0.95rem;
+      }
+
+      .search-row {
+        padding-inline: 0.7rem;
+      }
+
+      .entities-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <div>
+          <div class="brand-text-main">ECO DIGITAL CONTACT</div>
+          <div class="brand-text-sub">digital contact ecosystem</div>
+        </div>
+      </div>
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li>Home</li>
+          <li>Entidades</li>
+          <li>Ajuda</li>
+        </ul>
+      </nav>
+      <div class="user-area">
+        <span>Colaborador</span>
+        <button class="btn-login" type="button">
+          <span>Login SSO</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-kicker">
+        <span class="hero-kicker-dot"></span>
+        <span>Agenda digital inteligente</span>
+      </div>
+      <h1 class="hero-title">
+        ECO DIGITAL CONTACT – A agenda digital inteligente do ecossistema
+      </h1>
+      <p class="hero-subtitle">
+        Pesquise contactos de todas as entidades do grupo em segundos. Um portal único, seguro
+        e otimizado para equipas que lidam diariamente com múltiplas empresas.
+      </p>
+
+      <!-- SEARCH PANEL -->
+      <div class="search-panel" aria-label="Motor de pesquisa inteligente">
+        <div class="search-row">
+          <div class="search-icon" aria-hidden="true">⌕</div>
+          <input
+            type="search"
+            class="search-input"
+            placeholder="Pesquisar por nome, entidade, departamento, telefone, email..."
+            aria-label="Pesquisar contactos"
+          />
+          <div class="search-chip">Fuzzy Search</div>
+          <div class="search-chip">Autocomplete</div>
+        </div>
+        <div class="search-meta">
+          <span>Exemplo: “João Silva Banco”, “Callcenter Luanda”, “Balcão 102 – Seguros”</span>
+          <div class="search-meta-shortcuts">
+            <span class="spark">●</span><span>Atualizado via AD / LDAP</span>
+            <span class="kbd">Ctrl</span><span>+</span><span class="kbd">K</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENTITIES -->
+    <section class="entities-section">
+      <div class="entities-header">
+        <div>
+          <strong>Entidades do ecossistema</strong>
+          <span> · clique para filtrar contactos por empresa</span>
+        </div>
+        <div style="font-size:0.8rem;">+140 utilizadores internos · multi-empresa · multi-domínio</div>
+      </div>
+
+      <div class="entities-grid" aria-label="Grelha de entidades do ecossistema">
+        <!-- Substituir src pelos logos reais (SVG/PNG) -->
+        <article class="entity-item" tabindex="0" role="button" aria-label="Seguradora">
+          <div class="entity-inner">
+            <div class="entity-icon-wrapper">
+              <img src="icons/seguradora-logo.png" alt="Logo Seguradora" class="entity-icon-real" />
+            </div>
+            <div class="entity-name">Selenium</div>
+            <div class="entity-tag">Digital Services</div>
+          </div>
+        </article>
+
+        <article class="entity-item" tabindex="0" role="button" aria-label="Banco">
+          <div class="entity-inner">
+            <div class="entity-icon-wrapper">
+              <img src="icons/banco-logo.png" alt="Logo Banco" class="entity-icon-real" />
+            </div>
+            <div class="entity-name">Banco BCI</div>
+            <div class="entity-tag">Corporate</div>
+          </div>
+        </article>
+
+        <article class="entity-item" tabindex="0" role="button" aria-label="Plataforma Digital">
+          <div class="entity-inner">
+            <div class="entity-icon-wrapper">
+              <img src="icons/plataforma-logo.png" alt="Logo Plataforma" class="entity-icon-real" />
+            </div>
+            <div class="entity-name">ESPAES</div>
+            <div class="entity-tag">Service Consulting</div>
+          </div>
+        </article>
+
+        <article class="entity-item" tabindex="0" role="button" aria-label="Callcenter">
+          <div class="entity-inner">
+            <div class="entity-icon-wrapper">
+              <img src="icons/callcenter-logo.png" alt="Logo Callcenter" class="entity-icon-real" />
+            </div>
+            <div class="entity-name">Banco KEVE</div>
+            <div class="entity-tag">Contact Center</div>
+          </div>
+        </article>
+
+        <article class="entity-item" tabindex="0" role="button" aria-label="Aplicações Core">
+          <div class="entity-inner">
+            <div class="entity-icon-wrapper">
+              <img src="icons/aplicacoes-logo.png" alt="Logo Aplicações" class="entity-icon-real" />
+            </div>
+            <div class="entity-name">Global Catering</div>
+            <div class="entity-tag"></div>
+          </div>
+        </article>
+
+        <article class="entity-item" tabindex="0" role="button" aria-label="Outras Entidades">
+          <div class="entity-inner">
+            <div class="entity-icon-wrapper">
+              <img src="icons/ecosistema-logo.png" alt="Logo Ecossistema" class="entity-icon-real" />
+            </div>
+            <div class="entity-name">Global Carrapas</div>
+            <div class="entity-tag"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ACTIONS -->
+    <section class="actions" aria-label="Ações rápidas">
+      <button class="action-btn action-primary" type="button">
+        Pesquisar Contactos
+      </button>
+      <button class="action-btn action-secondary" type="button">
+        Ver Entidades
+      </button>
+      <button class="action-btn action-tertiary" type="button">
+        Acesso Rápido
+      </button>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>© 2025 ECO DIGITAL CONTACT · Todos os direitos reservados.</div>
+      <div class="footer-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Utilização</a>
+        <a href="#">Suporte Técnico</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
