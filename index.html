@@ -11,6 +11,7 @@
       margin: 0;
       padding: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      scroll-behavior: smooth;
     }
 
     :root {
@@ -140,6 +141,10 @@
 
     nav li:hover::after {
       width: 100%;
+    }
+
+    li a{
+      text-decoration: none;
     }
 
     .user-area {
@@ -580,7 +585,7 @@
       <nav aria-label="Navegação principal">
         <ul>
           <li>Home</li>
-          <li>Entidades</li>
+          <li><a href="#entities">Entidades</a></li>
           <li>Ajuda</li>
         </ul>
       </nav>
@@ -619,7 +624,7 @@
             placeholder="Pesquisar por nome, entidade, departamento, telefone, email..."
             aria-label="Pesquisar contactos"
           />
-          <div class="search-chip">Fuzzy Search</div>
+          <div class="search-chip">Pesquisa Difusa</div>
           <div class="search-chip">Autocomplete</div>
         </div>
         <div class="search-meta">
@@ -633,7 +638,7 @@
     </section>
 
     <!-- ENTITIES -->
-    <section class="entities-section">
+    <section class="entities-section" id="entities">
       <div class="entities-header">
         <div>
           <strong>Entidades do ecossistema</strong>
@@ -647,7 +652,7 @@
         <article class="entity-item" tabindex="0" role="button" aria-label="Seguradora">
           <div class="entity-inner">
             <div class="entity-icon-wrapper">
-              <img src="icons/seguradora-logo.png" alt="Logo Seguradora" class="entity-icon-real" />
+              <img src="images/Selenium-logotipo.ico" alt="Logo Seguradora" class="entity-icon-real" />
             </div>
             <div class="entity-name">Selenium</div>
             <div class="entity-tag">Digital Services</div>
@@ -657,7 +662,7 @@
         <article class="entity-item" tabindex="0" role="button" aria-label="Banco">
           <div class="entity-inner">
             <div class="entity-icon-wrapper">
-              <img src="icons/banco-logo.png" alt="Logo Banco" class="entity-icon-real" />
+              <img src="images/logo-bci-1.png" alt="Logo Banco" class="entity-icon-real" />
             </div>
             <div class="entity-name">Banco BCI</div>
             <div class="entity-tag">Corporate</div>
@@ -667,7 +672,7 @@
         <article class="entity-item" tabindex="0" role="button" aria-label="Plataforma Digital">
           <div class="entity-inner">
             <div class="entity-icon-wrapper">
-              <img src="icons/plataforma-logo.png" alt="Logo Plataforma" class="entity-icon-real" />
+              <img src="images/bg_Espaes.png" alt="Logo Plataforma" class="entity-icon-real" />
             </div>
             <div class="entity-name">ESPAES</div>
             <div class="entity-tag">Service Consulting</div>
@@ -677,7 +682,7 @@
         <article class="entity-item" tabindex="0" role="button" aria-label="Callcenter">
           <div class="entity-inner">
             <div class="entity-icon-wrapper">
-              <img src="icons/callcenter-logo.png" alt="Logo Callcenter" class="entity-icon-real" />
+              <img src="images/keve.png" alt="Logo Callcenter" class="entity-icon-real" />
             </div>
             <div class="entity-name">Banco KEVE</div>
             <div class="entity-tag">Contact Center</div>
@@ -687,7 +692,7 @@
         <article class="entity-item" tabindex="0" role="button" aria-label="Aplicações Core">
           <div class="entity-inner">
             <div class="entity-icon-wrapper">
-              <img src="icons/aplicacoes-logo.png" alt="Logo Aplicações" class="entity-icon-real" />
+              <img src="images/global_catering.png" alt="Logo Aplicações" class="entity-icon-real" />
             </div>
             <div class="entity-name">Global Catering</div>
             <div class="entity-tag"></div>
@@ -697,7 +702,7 @@
         <article class="entity-item" tabindex="0" role="button" aria-label="Outras Entidades">
           <div class="entity-inner">
             <div class="entity-icon-wrapper">
-              <img src="icons/ecosistema-logo.png" alt="Logo Ecossistema" class="entity-icon-real" />
+              <img src="images/global-carrapas.jpg" alt="Logo Ecossistema" class="entity-icon-real" />
             </div>
             <div class="entity-name">Global Carrapas</div>
             <div class="entity-tag"></div>
@@ -741,6 +746,11 @@ const contactos = [
   { nome: "Carlos Mendes", entidade: "Global Catering", departamento: "Operações", telefone: "923888999", email: "carlos@gc.co.ao" },
   { nome: "Ana Luena", entidade: "Banco KEVE", departamento: "Contact Center", telefone: "923444333", email: "ana@keve.co.ao" },
   { nome: "Hugo Paulo", entidade: "ESPAES", departamento: "Consultoria", telefone: "923000111", email: "hugo@espaes.co.ao" },
+  { nome: "Ana Dias", entidade: "Banco BCI", departamento: "Crédito", telefone: "923111222", email: "ana_dias@bci.co.ao" },
+  { nome: "Tiago António", entidade: "Selenium", departamento: "IT Support", telefone: "923555444", email: "tiago_antoini@selenium.co.ao" },
+  { nome: "Joana Sunda", entidade: "Global Catering", departamento: "Operações", telefone: "923888999", email: "joana_sunda@gc.co.ao" },
+  { nome: "Ana Lucas", entidade: "Banco KEVE", departamento: "Contact Center", telefone: "923444333", email: "ana@keve.co.ao" },
+  { nome: "Panzo Paulo", entidade: "Banco KEVE", departamento: "Consultoria", telefone: "923000111", email: "panzo@keve.co.ao" },
 ];
 
 /* ============================
