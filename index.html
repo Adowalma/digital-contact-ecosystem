@@ -606,6 +606,121 @@
         align-items: flex-start;
       }
     }
+
+    /* ===========================
+   MOBILE / TELEMÓVEIS
+   =========================== */
+    @media (max-width: 480px) {
+
+      /* HEADER */
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      .brand-text-main {
+        font-size: 0.95rem;
+      }
+
+      .brand-text-sub {
+        font-size: 0.6rem;
+      }
+
+      .user-area {
+        width: 100%;
+        justify-content: space-between;
+        font-size: 0.8rem;
+      }
+
+      /* HERO */
+      .hero-title {
+        font-size: 1.7rem;
+        line-height: 1.15;
+      }
+
+      .hero-subtitle {
+        font-size: 0.9rem;
+      }
+
+      /* SEARCH */
+      .search-panel {
+        padding: 0.85rem;
+        border-radius: 16px;
+      }
+
+      .search-row {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 16px;
+      }
+
+      .search-icon {
+        align-self: flex-start;
+      }
+
+      .entity-select,
+      .search-input {
+        width: 100%;
+        font-size: 0.9rem;
+      }
+
+      .search-chip {
+        display: none;
+        /* remove ruído visual no mobile */
+      }
+
+      .search-meta {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center;
+      }
+
+      /* ENTITIES */
+      .entities-header {
+        text-align: center;
+        align-items: center;
+      }
+
+      .entities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .entity-item {
+        padding: 0.9rem;
+      }
+
+      .entity-icon-wrapper {
+        width: 42px;
+        height: 42px;
+      }
+
+      .entity-name {
+        font-size: 0.85rem;
+      }
+
+      /* ACTIONS */
+      .actions {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .action-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* FOOTER */
+      .footer-inner {
+        text-align: center;
+        align-items: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 
