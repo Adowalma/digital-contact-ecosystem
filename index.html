@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -245,6 +246,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.85rem;
+      margin: auto;
     }
 
     .search-row {
@@ -296,6 +298,21 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       white-space: nowrap;
+    }
+
+    /* DROPDOWN */
+    .entity-select {
+      background: #020617;
+      color: var(--text-main);
+      border: 1px solid #334155;
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .entity-select option {
+      background: #020617;
     }
 
     .search-meta {
@@ -580,9 +597,9 @@
       }
 
       .entities-header {
-    align-items: center;
-    text-align: center;
-  }
+        align-items: center;
+        text-align: center;
+      }
 
       .footer-inner {
         flex-direction: column;
@@ -823,6 +840,7 @@
       if (!box) {
         box = document.createElement("div");
         box.id = "resultados-box";
+        box.style.margin = "auto";
         box.style.marginTop = "1rem";
         box.style.background = "rgba(15,23,42,0.9)";
         box.style.border = "1px solid rgba(148,163,184,0.4)";
