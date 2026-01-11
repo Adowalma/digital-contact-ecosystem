@@ -49,12 +49,10 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(22px);
-      background: linear-gradient(
-        to bottom,
-        rgba(15, 23, 42, 0.96),
-        rgba(15, 23, 42, 0.85),
-        transparent
-      );
+      background: linear-gradient(to bottom,
+          rgba(15, 23, 42, 0.96),
+          rgba(15, 23, 42, 0.85),
+          transparent);
       border-bottom: 1px solid rgba(51, 65, 85, 0.7);
     }
 
@@ -143,7 +141,7 @@
       width: 100%;
     }
 
-    li a{
+    li a {
       text-decoration: none;
     }
 
@@ -558,11 +556,33 @@
         padding-inline: 0.7rem;
       }
 
+      .entity-select {
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.55);
+        color: #e5e7eb;
+        border-radius: 999px;
+        padding: 0.45rem 0.9rem;
+        font-size: 0.8rem;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .entity-select option {
+        background: #020617;
+        color: #e5e7eb;
+      }
+
+
       .entities-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.3rem;
       }
+
+      .entities-header {
+    align-items: center;
+    text-align: center;
+  }
 
       .footer-inner {
         flex-direction: column;
@@ -571,6 +591,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- HEADER -->
   <header>
@@ -618,12 +639,18 @@
       <div class="search-panel" aria-label="Motor de pesquisa inteligente">
         <div class="search-row">
           <div class="search-icon" aria-hidden="true">⌕</div>
-          <input
-            type="search"
-            class="search-input"
+          <select class="entity-select" aria-label="Filtrar por entidade">
+            <option value="all">Todas</option>
+            <option value="Banco BCI">Banco BCI</option>
+            <option value="Selenium">Selenium</option>
+            <option value="ESPAES">ESPAES</option>
+            <option value="Banco KEVE">Banco KEVE</option>
+            <option value="Global Catering">Global Catering</option>
+            <option value="Global Carrapas">Global Carrapas</option>
+          </select>
+          <input type="search" class="search-input"
             placeholder="Pesquisar por nome, entidade, departamento, telefone, email..."
-            aria-label="Pesquisar contactos"
-          />
+            aria-label="Pesquisar contactos" />
           <div class="search-chip">Pesquisa Difusa</div>
           <div class="search-chip">Autocomplete</div>
         </div>
@@ -737,114 +764,124 @@
     </div>
   </footer>
   <script>
-/* ============================
-   BASE DE DADOS SIMPLES (mock)
-   ============================ */
-const contactos = [
-  { nome: "João Silva", entidade: "Banco BCI", departamento: "Crédito", telefone: "923111222", email: "joao@bci.co.ao" },
-  { nome: "Maria Santos", entidade: "Selenium", departamento: "IT Support", telefone: "923555444", email: "maria@selenium.co.ao" },
-  { nome: "Carlos Mendes", entidade: "Global Catering", departamento: "Operações", telefone: "923888999", email: "carlos@gc.co.ao" },
-  { nome: "Ana Luena", entidade: "Banco KEVE", departamento: "Contact Center", telefone: "923444333", email: "ana@keve.co.ao" },
-  { nome: "Hugo Paulo", entidade: "ESPAES", departamento: "Consultoria", telefone: "923000111", email: "hugo@espaes.co.ao" },
-  { nome: "Ana Dias", entidade: "Banco BCI", departamento: "Crédito", telefone: "923111222", email: "ana_dias@bci.co.ao" },
-  { nome: "Tiago António", entidade: "Selenium", departamento: "IT Support", telefone: "923555444", email: "tiago_antoini@selenium.co.ao" },
-  { nome: "Joana Sunda", entidade: "Global Catering", departamento: "Operações", telefone: "923888999", email: "joana_sunda@gc.co.ao" },
-  { nome: "Ana Lucas", entidade: "Banco KEVE", departamento: "Contact Center", telefone: "923444333", email: "ana@keve.co.ao" },
-  { nome: "Panzo Paulo", entidade: "Banco KEVE", departamento: "Consultoria", telefone: "923000111", email: "panzo@keve.co.ao" },
-];
+    /* ============================
+       BASE DE DADOS SIMPLES (mock)
+       ============================ */
+    const contactos = [
+      { nome: "João Silva", entidade: "Banco BCI", departamento: "Crédito", telefone: "923111222", email: "joao@bci.co.ao" },
+      { nome: "Maria Santos", entidade: "Selenium", departamento: "IT Support", telefone: "923555444", email: "maria@selenium.co.ao" },
+      { nome: "Carlos Mendes", entidade: "Global Catering", departamento: "Operações", telefone: "923888999", email: "carlos@gc.co.ao" },
+      { nome: "Ana Luena", entidade: "Banco KEVE", departamento: "Contact Center", telefone: "923444333", email: "ana@keve.co.ao" },
+      { nome: "Hugo Paulo", entidade: "ESPAES", departamento: "Consultoria", telefone: "923000111", email: "hugo@espaes.co.ao" },
+      { nome: "Ana Dias", entidade: "Banco BCI", departamento: "Crédito", telefone: "923111222", email: "ana_dias@bci.co.ao" },
+      { nome: "Tiago António", entidade: "Selenium", departamento: "IT Support", telefone: "923555444", email: "tiago_antoini@selenium.co.ao" },
+      { nome: "Joana Sunda", entidade: "Global Catering", departamento: "Operações", telefone: "923888999", email: "joana_sunda@gc.co.ao" },
+      { nome: "Ana Lucas", entidade: "Banco KEVE", departamento: "Contact Center", telefone: "923444333", email: "ana@keve.co.ao" },
+      { nome: "Panzo Paulo", entidade: "Banco KEVE", departamento: "Consultoria", telefone: "923000111", email: "panzo@keve.co.ao" },
+    ];
 
-/* ============================
-   LÓGICA DE PESQUISA
-   ============================ */
-const input = document.querySelector(".search-input");
-const entities = document.querySelectorAll(".entity-item");
+    /* ============================
+       LÓGICA DE PESQUISA
+       ============================ */
+    const input = document.querySelector(".search-input");
+    const entities = document.querySelectorAll(".entity-item");
+    const entitySelect = document.querySelector(".entity-select");
 
-function fuzzyMatch(text, query) {
-  return text.toLowerCase().includes(query.toLowerCase());
-}
+    function fuzzyMatch(text, query) {
+      return text.toLowerCase().includes(query.toLowerCase());
+    }
 
-function pesquisar() {
-  const q = input.value.trim();
-  if (!q) return mostrarResultados([]);
-  
-  const resultado = contactos.filter(c =>
-    fuzzyMatch(c.nome, q) ||
-    fuzzyMatch(c.entidade, q) ||
-    fuzzyMatch(c.departamento, q) ||
-    fuzzyMatch(c.telefone, q) ||
-    fuzzyMatch(c.email, q)
-  );
+    function pesquisar() {
+      const q = input.value.trim().toLowerCase();
+      const entidadeSelecionada = entitySelect.value;
 
-  mostrarResultados(resultado);
-}
+      const resultado = contactos.filter(c => {
+        const matchTexto =
+          fuzzyMatch(c.nome, q) ||
+          fuzzyMatch(c.entidade, q) ||
+          fuzzyMatch(c.departamento, q) ||
+          fuzzyMatch(c.telefone, q) ||
+          fuzzyMatch(c.email, q);
 
-/* ============================
-   AUTOCOMPLETE (resultado simples)
-   ============================ */
-function mostrarResultados(lista) {
-  let box = document.querySelector("#resultados-box");
+        const matchEntidade =
+          entidadeSelecionada === "all" || c.entidade === entidadeSelecionada;
 
-  if (!box) {
-    box = document.createElement("div");
-    box.id = "resultados-box";
-    box.style.marginTop = "1rem";
-    box.style.background = "rgba(15,23,42,0.9)";
-    box.style.border = "1px solid rgba(148,163,184,0.4)";
-    box.style.borderRadius = "12px";
-    box.style.padding = "1rem";
-    box.style.maxWidth = "760px";
-    box.style.width = "100%";
-    box.style.boxShadow = "0 0 20px rgba(37,99,235,0.3)";
-    input.closest(".search-panel").after(box);
-  }
+        return matchTexto && matchEntidade;
+      });
 
-  if (lista.length === 0) {
-    box.innerHTML = `<div style="color:#9ca3af;">Sem resultados...</div>`;
-    return;
-  }
+      mostrarResultados(resultado);
+    }
 
-  box.innerHTML = lista
-    .map(
-      c => `
+    entitySelect.addEventListener("change", pesquisar);
+
+    /* ============================
+       AUTOCOMPLETE (resultado simples)
+       ============================ */
+    function mostrarResultados(lista) {
+      let box = document.querySelector("#resultados-box");
+
+      if (!box) {
+        box = document.createElement("div");
+        box.id = "resultados-box";
+        box.style.marginTop = "1rem";
+        box.style.background = "rgba(15,23,42,0.9)";
+        box.style.border = "1px solid rgba(148,163,184,0.4)";
+        box.style.borderRadius = "12px";
+        box.style.padding = "1rem";
+        box.style.maxWidth = "760px";
+        box.style.width = "100%";
+        box.style.boxShadow = "0 0 20px rgba(37,99,235,0.3)";
+        input.closest(".search-panel").after(box);
+      }
+
+      if (lista.length === 0) {
+        box.innerHTML = `<div style="color:#9ca3af;">Sem resultados...</div>`;
+        return;
+      }
+
+      box.innerHTML = lista
+        .map(
+          c => `
       <div style="margin-bottom:0.8rem; padding-bottom:0.8rem; border-bottom:1px solid rgba(148,163,184,0.15)">
         <div style="font-size:1rem; font-weight:600; color:#e5edff;">${c.nome}</div>
         <div style="font-size:0.85rem; color:#9ca3af;">${c.entidade} · ${c.departamento}</div>
         <div style="margin-top:0.3rem; color:#cbd5f5;">📞 ${c.telefone} · ✉️ ${c.email}</div>
       </div>
     `
-    )
-    .join("");
-}
+        )
+        .join("");
+    }
 
-/* ============================
-   FILTRAR POR ENTIDADE
-   ============================ */
-entities.forEach(e => {
-  e.addEventListener("click", () => {
-    const nomeEntidade = e.querySelector(".entity-name").textContent.trim();
-    const filtrado = contactos.filter(c => c.entidade === nomeEntidade);
+    /* ============================
+       FILTRAR POR ENTIDADE
+       ============================ */
+    entities.forEach(e => {
+      e.addEventListener("click", () => {
+        const nomeEntidade = e.querySelector(".entity-name").textContent.trim();
+        const filtrado = contactos.filter(c => c.entidade === nomeEntidade);
 
-    mostrarResultados(filtrado);
+        mostrarResultados(filtrado);
 
-    input.value = nomeEntidade;
-  });
-});
+        input.value = nomeEntidade;
+      });
+    });
 
-/* ============================
-   ATALHO CTRL+K
-   ============================ */
-document.addEventListener("keydown", (ev) => {
-  if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === "k") {
-    ev.preventDefault();
-    input.focus();
-  }
-});
+    /* ============================
+       ATALHO CTRL+K
+       ============================ */
+    document.addEventListener("keydown", (ev) => {
+      if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === "k") {
+        ev.preventDefault();
+        input.focus();
+      }
+    });
 
-/* ============================
-   EVENTO NA PESQUISA
-   ============================ */
-input.addEventListener("input", pesquisar);
-</script>
+    /* ============================
+       EVENTO NA PESQUISA
+       ============================ */
+    input.addEventListener("input", pesquisar);
+  </script>
 
 </body>
+
 </html>
